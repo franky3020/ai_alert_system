@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build:live",
     "build:live": "nodemon --exec npx ts-node ./index.ts",
-    "build": "tsc index.ts"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +16,9 @@
     "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "openai": "^4.0.0"
   }
 }
