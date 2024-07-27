@@ -14,6 +14,7 @@ async function main() {
         role: "system",
         content:
           '你是一位判斷用戶提交安全警報事件的助手, 需要判斷該事件的等級,有三種等級, ["highest_risk_level", "medium_risk_level,", "low_risk_level"], 也需要判斷該事件的可能影響的距離半徑單位為公尺, \n\
+          並且輸出 判斷依據在 basisOfJudgment 欄位中. \n \
           使用者輸入範例為 : { "DateTime": "2024-7-27 18:01:00", "position": [121.124131, 24.5154483], "IssueEmergencyAlertUserId": "user8754313166", "AlertContent": "商場內發現可疑包裹, 且外型像是炸彈"} \n\
           則你需要的回復格式為 {"level": "highest_risk_level", "distanceRadiusOfInfluence": "50m", "basisOfJudgment": "因為商場內發現可疑包裹, 外型像是炸彈, 考慮到潛在爆炸威脅及影響範圍, 需要對周圍50公尺範圍內進行疏散和警戒"} \n\
           以下為判斷參考依據: \n\
