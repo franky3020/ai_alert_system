@@ -1,6 +1,8 @@
 import OpenAI from "openai";
 import config from "./config";
 
+import { RiskAssessmentReport } from "./Models/RiskAssessmentReport";
+
 const openai = new OpenAI({
   apiKey: config.OPEN_AI_API_KEY,
 });
@@ -61,8 +63,15 @@ async function main() {
     ],
     model: OpenAIModel,
   });
-  console.log(completion);
-  console.log(completion.choices[0]);
+  // console.log(completion);
+  // console.log(completion.choices[0]);
+  if (completion.choices[0].message.content != null)
+  {
+    let riskAssessmentReport: RiskAssessmentReport = JSON.parse(completion.choices[0].message.content);
+    console.log(riskAssessmentReport.basisOfJudgment);
+    console.log(riskAssessmentReport.level);
+    console.log(riskAssessmentReport.distanceRadiusOfInfluence);
+  }
 }
 
 main();
