@@ -10,7 +10,9 @@ dotenv_1.default.config({ path: path_1.default.resolve(__dirname, "./.env") });
 // Loading process.env as ENV interface
 const getConfig = () => {
     return {
-        OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY
+        OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY,
+        Google_Search_API_KEY: process.env.Google_Search_API_KEY,
+        Google_Search_API_CX: process.env.Google_Search_API_CX
     };
 };
 // Throwing an Error if any field was undefined we don't
@@ -21,7 +23,7 @@ const getConfig = () => {
 const getSanitzedConfig = (config) => {
     for (const [key, value] of Object.entries(config)) {
         if (value === undefined) {
-            throw new Error(`Missing key ${key} in config.env`);
+            throw new Error(`Missing key ${key} in .env`);
         }
     }
     return config;

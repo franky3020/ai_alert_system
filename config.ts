@@ -10,17 +10,23 @@ dotenv.config({ path: path.resolve(__dirname, "./.env") });
 
 interface ENV {
     OPEN_AI_API_KEY: string | undefined;
-}
+    Google_Search_API_KEY: string | undefined;
+    Google_Search_API_CX: string | undefined;
+  }
 
 interface Config {
     OPEN_AI_API_KEY: string;
+    Google_Search_API_KEY: string;
+    Google_Search_API_CX: string;
 }
 
 // Loading process.env as ENV interface
 
 const getConfig = (): ENV => {
   return {
-    OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY
+    OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY,
+    Google_Search_API_KEY: process.env.Google_Search_API_KEY,
+    Google_Search_API_CX: process.env.Google_Search_API_CX
   };
 };
 
@@ -33,7 +39,7 @@ const getConfig = (): ENV => {
 const getSanitzedConfig = (config: ENV): Config => {
   for (const [key, value] of Object.entries(config)) {
     if (value === undefined) {
-      throw new Error(`Missing key ${key} in config.env`);
+      throw new Error(`Missing key ${key} in .env`);
     }
   }
   return config as Config;

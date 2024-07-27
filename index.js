@@ -14,16 +14,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const openai_1 = __importDefault(require("openai"));
 const config_1 = __importDefault(require("./config"));
+const axios_1 = __importDefault(require("axios"));
 const openai = new openai_1.default({
-    apiKey: config_1.default.OPEN_AI_API_KEY
+    apiKey: config_1.default.OPEN_AI_API_KEY,
 });
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        const completion = yield openai.chat.completions.create({
-            messages: [{ role: "system", content: "You are a helpful assistant." }],
-            model: "gpt-3.5-turbo",
+        // const completion = await openai.chat.completions.create({
+        //   messages: [
+        //     { role: "system", content: "You are a helpful assistant." },
+        //     { role: "assistant", content: "How can I assist you today?" },
+        //     { role: "user", content: "I need some good suggestion for have a good sleep" }
+        //   ],
+        //   model: "gpt-3.5-turbo-0125",
+        // });
+        // console.log(completion.choices[0]);
+        // axios.get(`https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyDxvfJzH7E2snoyqNRQh7E2UlOonPOtg50&cx=543749e389b5447cc&q=franky 魔術 app`)
+        axios_1.default.get(`https://customsearch.googleapis.com/customsearch/v1?key=${config_1.default.Google_Search_API_KEY}&cx=${config_1.default.Google_Search_API_CX}&q=good food`)
+            .then(function (response) {
+            console.log(response.data);
+            // console.log(response.status);
+            // console.log(response.statusText);
+            // console.log(response.headers);
+            // console.log(response.config);
+            // TODO: 學 json to typescript obj
+            let googleSearchRes = response.data;
+            console.log(googleSearchRes.searchInformation.searchTime);
         });
-        console.log(completion.choices[0]);
     });
 }
 main();
