@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import config from "./config";
 import axios from "axios";
+import { GoogleSearch } from "./Service/GoogleSearch";
 
 const openai = new OpenAI({
   apiKey: config.OPEN_AI_API_KEY,
@@ -17,30 +18,10 @@ async function main() {
   // });
 
   // console.log(completion.choices[0]);
-
-  // axios.get(`https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyDxvfJzH7E2snoyqNRQh7E2UlOonPOtg50&cx=543749e389b5447cc&q=franky 魔術 app`)
-  axios.get(`https://customsearch.googleapis.com/customsearch/v1?key=${config.Google_Search_API_KEY}&cx=${config.Google_Search_API_CX}&q=good food`)
-  .then(function (response) {
-    console.log(response.data);
-    // console.log(response.status);
-    // console.log(response.statusText);
-    // console.log(response.headers);
-    // console.log(response.config);
-
-    // TODO: 學 json to typescript obj
-    let googleSearchRes = response.data as GoogleSearchRes;
-
-    console.log(googleSearchRes.searchInformation.searchTime);
-
-  });
-
+  // GoogleSearch.search("");
 
 }
 
 main();
 
-interface GoogleSearchRes {
-  searchInformation: {
-    searchTime: number
-  };
-}
+
