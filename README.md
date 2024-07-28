@@ -1,5 +1,6 @@
-# ai_agent
+# ai_alert_system
 node: 18.17.0
+
 npm run build && node ./dist/index.js
 
 
