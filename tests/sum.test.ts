@@ -13,3 +13,22 @@ test("tojson", async () => {
   expect(3).toBe(3);
 });
 
+
+test("jsonPrase", () => {
+
+  interface Message {
+    message: string,
+    level: number,
+    otherMsg: string
+  }
+
+  let message: Message = JSON.parse(
+    '{"message": "good"}'
+  );
+
+  expect(message.message).toBe("good");
+  expect(message.level).toBe(undefined);
+  expect(message.otherMsg).toBe(undefined);
+  expect(Object.keys(message).length).toBe(1);
+})
+
