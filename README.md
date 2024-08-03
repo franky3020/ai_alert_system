@@ -1,6 +1,11 @@
 # ai_alert_system
-node: 18.17.0
+node: 20.16.0
 
-npm run build && node ./dist/index.js
+pnpm i
+
+rm -rf ./dist
+pnpm run build
+cp ./src/.env ./dist/
+node ./dist/index.js
 
 

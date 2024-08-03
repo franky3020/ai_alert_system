@@ -1,14 +1,5 @@
-import OpenAI from "openai";
-import config from "./config";
-
 import { AlertAIAgent } from "./Service/AlertAIAgent";
 import { UserAlertMsg } from "./Models/UserAlertMsg";
-
-const openai = new OpenAI({
-  apiKey: config.OPEN_AI_API_KEY,
-});
-
-const OpenAIModel = "gpt-3.5-turbo-0125";
 
 async function main() {
   const alertAIAgent = new AlertAIAgent();
