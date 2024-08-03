@@ -1,11 +1,11 @@
-import { CreateChatCompletionRequestMessage } from "openai/resources/chat";
+import { ChatCompletionMessageParam } from "openai/resources/chat";
 import { RiskAssessmentReport } from "../Models/RiskAssessmentReport";
 import config from "../config";
 import OpenAI from "openai";
 import { UserAlertMsg } from "../Models/UserAlertMsg";
 
 export class AlertAIAgent {
-  messages: Array<CreateChatCompletionRequestMessage> = [];
+  messages: Array<ChatCompletionMessageParam> = [];
 
   constructor() {
     const exampleAlert = new UserAlertMsg(new Date("2021-07-27T18:24:00"), {latitude: 24.17129297887858, longitude: 120.59929167921332}, "user123", "商場內發現可疑包裹, 且外型像是炸彈");
@@ -16,7 +16,7 @@ export class AlertAIAgent {
         '因為商場內發現可疑包裹, 外型像是炸彈, 考慮到潛在爆炸威脅及影響範圍, 需要對周圍50公尺範圍內進行疏散和警戒'
     );
 
-    let promptMsg: CreateChatCompletionRequestMessage = {
+    let promptMsg: ChatCompletionMessageParam = {
         role: "system",
         content: '你是一位判斷用戶提交安全警報事件的助手, 需要判斷該事件的等級,有三種等級, ["highest_risk_level", "medium_risk_level,", "low_risk_level"], 也需要判斷該事件的可能影響的距離半徑單位為公尺,\n' +
         '並且輸出 判斷依據在 basisOfJudgment 欄位中. \n' +
