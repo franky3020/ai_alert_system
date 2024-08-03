@@ -32,8 +32,9 @@ export class AlertAIAgent {
         "則你需要的回復格式為:" +
         exampleReport.toJson() +
         "\n" +
-        "以下為判斷參考依據: \n" +
-        "火災 視為 highest_risk_level\n",
+        "以下為判斷準則: \n" +
+        "火災 視為 highest_risk_level\n" +
+        "如果警報內容明顯無法判讀,可能是亂碼或是無意義的文字或是非警報內容 則視為 low_risk_level 且 影響範圍為 0m\n",
     };
 
     this.messages.push(promptMsg);
